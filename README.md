@@ -1,10 +1,31 @@
-# Coursera_Capstone: Prediction of One's Favor to a Place
-This project is for the Capstone Project of Applied Data Science in Coursera
+# Neighborhood Preference Prediction
+Predict whether a traveler will enjoy a location based on neighborhood features using Foursquare API and clustering analysis
 
-## Introduction
+## Table of Contents
+- [Project Background](#project-background)
+- [Project Goal](#project-goal)
+- [File Structure](#file-structure)
+- [Instructions](#instructions)
+- [Future Improvements](#future-improvements)
+- [License](#license)
 
-### Background
-People like traveling nowadays. Some go out for business and others go out for sightseeing. After staying in a place long enough (for example, 1 week), people tend to rate that place based on its neighborhood: I like this place because there are a lot of restaurants; I hate this place because I cannot find a grocery here. If going to a boring place, the tourist would think this is an uninteresting trip. Therefore, it becomes very important to predict whether a person like this place or not. Otherwise, it will only be a waste of time and energy to travel around. But how could we know that? How much does the neighbor affect a person’s favor to a certain place? Do the places he likes have something in common? And is it possible to use this method to predict his favor to another place?
+## Project Background
+Travelers often rate destinations based on their surrounding neighborhoods: vibrant areas with restaurants and shops are praised, while places lacking essential services are criticized. This project analyzes how neighborhood features influence visitor satisfaction and explores whether preferences across locations reveal common patterns. By clustering neighborhood data, this project aims to predict whether a traveler is likely to enjoy a destination, providing insights for personalized recommendations and travel planning.
+
+## Project Goal
+This project aims to analyze neighborhood characteristics using **Python** and the [*Foursquare API*](https://foursquare.com), identifying patterns that influence traveler preferences. By clustering venue and amenities data, it predicts how likely a visitor is to enjoy a given location, enabling scalable, data-driven insights for personalized travel recommendations.
+
+## File Structure
+Configuration & Metadata:
+- `README.md` – project overview
+- `LICENSE.txt` – license information
+- `.gitignore` – git ignore config
+- `.gitattributes` – git attributes config
+
+Core Logic:
+- `toronto_venue_clustering.ipynb` – notebook for clustering Toronto venues
+
+## Instructions
 
 ### Problem
 It is assumed that the factors that affect a person’s favor to a place is the neighborhood features. This capstone project will use myself as an object to find out the neighborhood features of the places I have stayed. In addition, I will try to predict my like or dislike to a random place I have never been to.
@@ -31,4 +52,9 @@ This table will be uploaded to the Jupyter Notebook as a data frame. I will use 
 Since the original data is created by me, the data cleaning process will be very simple. However, in reality, special processes will be needed to clean up the data in these two columns, for example, the format of place and rating.
 
 ### Feature Selection
-Only two features are original features: places and ratings. One’s rating of a place is indispensable in this model. In addition, as the analysis continues, more feature will be attained: latitude and longitude of the place, venues of that place, latitude and longitude of venues and category of venues. 
+Only two features are original features: places and ratings. One’s rating of a place is indispensable in this model. In addition, as the analysis continues, more feature will be attained: latitude and longitude of the place, venues of that place, latitude and longitude of venues and category of venues.
+
+## Future Improvements
+
+## License
+This project is licensed under the MIT License - see the [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/leopengningchuan/Coursera_Capstone?tab=MIT-1-ov-file) file for details.
