@@ -1,5 +1,5 @@
 # Neighborhood Preference Prediction
-Predict whether a traveler will enjoy a location based on neighborhood features using Foursquare API and clustering analysis
+Predict whether a traveler will enjoy a location based on neighborhood venue categories using Foursquare API and clustering analysis
 
 ## Table of Contents
 - [Project Background](#project-background)
@@ -22,10 +22,10 @@ Predict whether a traveler will enjoy a location based on neighborhood features 
 - [License](#license)
 
 ## Project Background
-Travelers often rate destinations based on their surrounding neighborhoods: vibrant areas with restaurants and shops are praised, while places lacking essential services are criticized. This project analyzes how neighborhood features influence visitor satisfaction and explores whether preferences across locations reveal common patterns. By clustering neighborhood data, this project aims to predict whether a traveler is likely to enjoy a destination, providing insights for personalized recommendations and travel planning.
+Travelers often rate destinations based on their surrounding neighborhood venue categories: vibrant areas with restaurants and shops are praised, while places lacking essential services are criticized. This project analyzes how neighborhood venue categories influence visitor satisfaction and explores whether preferences across locations reveal common patterns. By clustering neighborhood venue data, this project aims to predict whether a traveler is likely to enjoy a destination, providing insights for personalized recommendations and travel planning.
 
 ## Project Goal
-This project aims to analyze neighborhood characteristics using **Python** and the [*Foursquare API*](https://foursquare.com), identifying patterns that influence traveler preferences. By clustering venue and amenities data, it predicts how likely a visitor is to enjoy a given location, enabling scalable, data-driven insights for personalized travel recommendations.
+This project aims to analyze neighborhood characteristics using **Python Jupyter Notebook** and the [*Foursquare API*](https://foursquare.com), identifying patterns that influence traveler preferences. By clustering venue data, it predicts how likely a visitor is to enjoy a given location, enabling scalable, data-driven insights for personalized travel recommendations.
 
 ## File Structure
 Configuration & Metadata:
@@ -35,7 +35,7 @@ Configuration & Metadata:
 - `.gitattributes` – git attributes config
 
 Core Logic:
-- `foursquare_api.py` – python script for getting Foursquare API data
+- `foursquare_api.py` – python script for getting venue data from [*Foursquare API*](https://foursquare.com)
 - `location_rating.csv` – personal rating of locations CSV file
 - `toronto_venue_clustering.ipynb` – notebook for clustering Toronto venues
 - `location_rating_prediction.ipynb` – notebook for clustering Toronto venues
@@ -46,12 +46,13 @@ Core Logic:
 - `pandas`, `np`, `re`: for data manipulation
 - `requests`, `os`: for basic system operations
 - `dotenv`: for loading environment variables from a `.env` file
-- `matplotlib`, `folium`: for data visualization and map creating
+- `matplotlib`: for data visualization
+- `folium`: for interactive map creation
 - `geopy`: for getting the geological data
 - `sklearn`: for modeling
 
 ### 2. Toronto Venue Clustering
-Toronto neighborhoods are clustered based on nearby venue types retrieved from the Foursquare API. After transforming venue categories into dummy variables, KMeans clustering is applied to group similar areas, and results are visualized on an interactive map.
+Location data for Toronto, Canada is retrieved from Wikipedia. Neighborhoods are clustered based on nearby venue types using the [*Foursquare API*](https://foursquare.com). After converting venue categories to dummy variables, KMeans clustering is applied to group similar neighborhoods. Results are visualized on an interactive map.
 
 #### 2.1 Datasets Used
 The dataset of Toronto's postal codes and boroughs is scraped from Wikipedia. After removing unassigned rows, neighborhoods belonging to the same postal code are combined. Duplicate rows are also dropped to ensure clean data.
@@ -65,12 +66,10 @@ To obtain the geographical coordinates (latitude and longitude) of each postal c
 #### 2.2 Foursquare Data Retrieval
 Foursquare venue data is retrieved using the [*Foursquare API*](https://foursquare.com) for each postal code's latitude and longitude. The API returns up to 50 nearby venues sorted by distance from the given coordinates.
 
-Each venue's category information is extracted and transformed into dummy variables using `MultiLabelBinarizer`. These dummy variables are then grouped by postal code and averaged to represent the neighborhood profile for each area.
-
-The final dataset is a combination of geographic and categorical features, with each row representing a unique postal code and its surrounding venue composition.
+Each venue's category information is extracted and transformed into dummy variables. These dummy variables are then grouped by postal code and averaged to represent the neighborhood profile for each area. The final dataset is a combination of geographic and categorical features, with each row representing a unique postal code and its surrounding venue composition.
 
 #### 2.3 Clustering
-KMeans clustering is applied to the venue dummy variables to identify similar neighborhoods in Toronto. Each postal code is assigned to a cluster based on its surrounding venue composition. The results are visualized on an interactive `Folium` map, where each neighborhood is colored according to its cluster membership.
+KMeans clustering is applied to the venue dummy variables to identify similar neighborhoods in Toronto. Each postal code is assigned to a cluster based on its surrounding venue composition. The results are visualized on an interactive map, where each neighborhood is colored according to its cluster membership.
 
 ### 3.Location Rating Prediction
 It is assumed that the factors that affect a person’s favor to a place is the neighborhood features. This section will use myself as an object to find out the neighborhood features of the places I have stayed. In addition, I will try to predict my like or dislike to a random place I have never been to.
@@ -88,23 +87,23 @@ As the subject of this study, a simple dataset is created consisting of places I
 
 This table is uploaded as `location_rating.csv`. It is read as a DataFrame and serves as the foundation for testing how neighborhood attributes correlate with my personal ratings.
 
-### 3.2 Geological Data Retrieval
-Location names from the original rating dataset are converted into latitude and longitude using the `geopy` package. These coordinates are then visualized on a folium map, with markers showing each location and its associated rating.
+### 3.2 Geolocation Data Retrieval
+To support further analysis, geographic coordinates are retrieved for each location in the dataset. These coordinates are then visualized on a Folium map, with markers indicating each location and its corresponding rating.
 
 #### 3.3 Foursquare Data Retrieval
-The same method described in Section 2.2 is applied here to retrieve venue data based on each location's latitude and longitude. Venue categories are transformed into dummy variables using `MultiLabelBinarizer`, then aggregated to represent the venue profile for each rated location.
+The same method described in Section 2.2 is applied here to retrieve venue data based on each location's latitude and longitude. Venue categories are transformed into dummy variables, then aggregated to represent the venue profile for each rated location.
 
 #### 3.4 Model Building
-The categories of the venues are converted into dummy variables using one-hot encoding. For each location, these dummy variables are aggregated to represent the neighborhood features, forming the input features for the predictive model.
+For each location, these dummy variables are aggregated to represent the neighborhood features, forming the input features for the predictive model.
 
-A linear regression model is constructed using the aggregated venue features as independent variables and the location rating as the dependent variable.
+Then, a linear regression model is constructed using the aggregated venue features as independent variables and the location rating as the dependent variable.
 
 #### 3.5 Testing Data Prediction
-A test city is provided as input. Its latitude and longitude are retrieved using `geopy`, and venue information is obtained via the Foursquare API. The venue categories are then transformed into dummy variables to match the training format. These features are fed into the trained model to generate the predicted location rating.
+A test city is used as input, and its latitude, longitude, and venue data are retrieved as features. Venue categories are converted into dummy variables to align with the training format, and these features are fed into the trained model to predict the location rating.
 
 ## Future Improvements
 - **Data Expansion**: Incorporate more rated locations and user data to improve model generalization and reduce bias from personal preferences.
-- **Venue Data Optimization**: Implement multi-radius Foursquare API queries or pagination to retrieve a more comprehensive set of nearby venues for each location.
+- **Venue Data Optimization**: Implement multi-radius [*Foursquare API*](https://foursquare.com) queries or pagination to retrieve a more comprehensive set of nearby venues for each location to avoid the 50 venues limit.
 - **Enhanced Feature Engineering**: Include additional contextual features such as population density, average income, or urban development index to enrich neighborhood profiles.
 - **Advanced Modeling Techniques**: Apply non-linear models such as Random Forest, XGBoost, or Neural Networks to better capture complex patterns in the data.
 
@@ -114,7 +113,6 @@ A test city is provided as input. Its latitude and longitude are retrieved using
 - Thanks to [*Wikipedia*](https://en.wikipedia.org/wiki/Main_Page) for providing the postal code and neighborhood data for Toronto in [*List of postal codes of Canada: M*](https://en.wikipedia.org/w/index.php?title=List_of_postal_codes_of_Canada:_M&oldid=926306543).
 - Thanks to [`geopy`](https://pypi.org/project/geopy/) for providing location geocoding services.
 - Thanks to [`folium`](https://pypi.org/project/folium/) for enabling interactive map visualization.
-
 
 ## License
 This project is licensed under the MIT License - see the [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/leopengningchuan/Coursera_Capstone?tab=MIT-1-ov-file) file for details.
