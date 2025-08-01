@@ -115,4 +115,4 @@ A test city is used as input, and its latitude, longitude, and venue data are re
 - Thanks to [`folium`](https://pypi.org/project/folium/) for enabling interactive map visualization.
 
 ## License
-This project is licensed under the MIT License - see the [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/leopengningchuan/Coursera_Capstone?tab=MIT-1-ov-file) file for details.
+This project is licensed under the MIT License - see the [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/leopengningchuan/neighborhood-preference-prediction?tab=MIT-1-ov-file) file for details.
