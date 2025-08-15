@@ -108,7 +108,7 @@ A test city is used as input, and its latitude, longitude, and venue data are re
 - **Advanced Modeling Techniques**: Apply non-linear models such as Random Forest, XGBoost, or Neural Networks to better capture complex patterns in the data.
 
 ## Acknowledgements
-- This project was inspired by the [*IBM Data Science Professional Certificate*](https://www.coursera.org/professional-certificates/ibm-data-science?utm_medium=sem&utm_source=gg&utm_campaign=b2c_namer_ibm-data-science_ibm_ftcof_professional-certificates_px_dr_bau_gg_pmax_pr_us-ca_en_m_hyb_23-04_nonNRL-within-14d&campaignid=19995348162&adgroupid=&device=c&keyword=&matchtype=&network=x&devicemodel=&creativeid=&assetgroupid=6490614053&targetid=&extensionid=&placement=&gad_source=1&gad_campaignid=19995375522&gbraid=0AAAAADdKX6YnCN4VNzyhe_JVqK6VgRwNM&gclid=CjwKCAjwv5zEBhBwEiwAOg2YKGmhLxKP-AF1b0s6mmCWTGecU0-5V39rjF-q_dJLRxBG1ph3PZ-7_BoCmfMQAvD_BwE) Capstone on [*Coursera*](https://www.coursera.org/).
+- This project was inspired by the [*IBM: Data Science Professional Certificate*](https://www.coursera.org/professional-certificates/ibm-data-science) Capstone on [*Coursera*](https://www.coursera.org/).
 - Thanks to [*Foursquare*](https://foursquare.com) for providing the venue data access API.
 - Thanks to [*Wikipedia*](https://en.wikipedia.org/wiki/Main_Page) for providing the postal code and neighborhood data for Toronto in [*List of postal codes of Canada: M*](https://en.wikipedia.org/w/index.php?title=List_of_postal_codes_of_Canada:_M&oldid=926306543).
 - Thanks to [`geopy`](https://pypi.org/project/geopy/) for providing location geocoding services.
